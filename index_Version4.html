@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Department Finder Quiz</title>
+  <style>
+    :root{--brand:#2b6cb0;--muted:#6b7280;--card:#f7fbff}
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:900px;margin:2rem auto;padding:1rem;color:#111}
+    h1{text-align:center;margin-bottom:0.25rem}
+    p.lead{color:var(--muted);text-align:center;margin-top:0;margin-bottom:1.25rem}
+    form{display:block}
+    .question{border:1px solid #eee;padding:1rem;margin-bottom:1rem;border-radius:8px}
+    .question h3{margin:0 0 0.5rem 0;font-size:1.05rem}
+    .answers{display:flex;flex-direction:column;gap:0.4rem}
+    label.answer{display:flex;align-items:center;gap:0.6rem;cursor:pointer;padding:0.35rem;border-radius:6px}
+    label.answer:hover{background:#fafbff}
+    input[type="radio"]{width:1rem;height:1rem}
+    .controls{display:flex;gap:0.75rem;align-items:center;justify-content:center;margin-top:1rem}
+    button.primary{background:var(--brand);color:#fff;border:none;padding:0.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:600}
+    button.ghost{background:transparent;border:1px solid #ddd;padding:0.5rem 0.9rem;border-radius:8px;cursor:pointer}
+    .result{border:1px solid #dfe7f5;padding:1rem;border-radius:8px;background:var(--card)}
+    .small{font-size:0.95rem;color:var(--muted)}
+    .hidden{display:none}
+    .note{font-size:0.9rem;color:#444;background:#fffbe6;padding:0.6rem;border:1px solid #fff1b8;border-radius:6px;margin-bottom:1rem}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Which Department Suits You?</h1>
+    <p class="lead">Answer each question using: Very frequently (4), Often (3), Sometimes (2), Never (1).</p>
+
+    <div class="note">
+      Scoring ranges:
+      <ul style="margin:0.35rem 0 0.15rem 1rem;padding:0">
+        <li><strong>22–28:</strong> Business Advisory</li>
+        <li><strong>16–21:</strong> Audit</li>
+        <li><strong>11–15:</strong> Tax</li>
+        <li><strong>7–10:</strong> CAS</li>
+      </ul>
+    </div>
+
+    <form id="quizForm" autocomplete="off" novalidate>
+      <div class="question" id="q1">
+        <h3>1. How often do you meet deadlines?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q1" value="very_frequently" data-points="4"> Very frequently</label>
+          <label class="answer"><input type="radio" name="q1" value="often" data-points="3"> Often</label>
+          <label class="answer"><input type="radio" name="q1" value="sometimes" data-points="2"> Sometimes</label>
+          <label class="answer"><input type="radio" name="q1" value="never" data-points="1"> Never</label>
+        </div>
+      </div>
+
+      <div class="question" id="q2">
+        <h3>2. How often do you plan what you do?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q2" value="very_frequently" data-points="4"> Very frequently</label>
+          <label class="answer"><input type="radio" name="q2" value="often" data-points="3"> Often</label>
+          <label class="answer"><input type="radio" name="q2" value="sometimes" data-points="2"> Sometimes</label>
+          <label class="answer"><input type="radio" name="q2" value="never" data-points="1"> Never</label>
+        </div>
+      </div>
+
+      <div class="question" id="q3">
+        <h3>3. How often do you strike up a conversation with others?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q3" value="very_frequently" data-points="4"> Very frequently</label>
+          <label class="answer"><input type="radio" name="q3" value="often" data-points="3"> Often</label>
+          <label class="answer"><input type="radio" name="q3" value="sometimes" data-points="2"> Sometimes</label>
+          <label class="answer"><input type="radio" name="q3" value="never" data-points="1"> Never</label>
+        </div>
+      </div>
+
+      <div class="question" id="q4">
+        <h3>4. How good are you at giving advice to friends?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q4" value="very_frequently" data-points="4"> Very good</label>
+          <label class="answer"><input type="radio" name="q4" value="often" data-points="3"> Often good</label>
+          <label class="answer"><input type="radio" name="q4" value="sometimes" data-points="2"> Sometimes good</label>
+          <label class="answer"><input type="radio" name="q4" value="never" data-points="1"> Not good / never</label>
+        </div>
+      </div>
+
+      <div class="question" id="q5">
+        <h3>5. How often do you try to create new relationships with people you have just met?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q5" value="very_frequently" data-points="4"> Very frequently</label>
+          <label class="answer"><input type="radio" name="q5" value="often" data-points="3"> Often</label>
+          <label class="answer"><input type="radio" name="q5" value="sometimes" data-points="2"> Sometimes</label>
+          <label class="answer"><input type="radio" name="q5" value="never" data-points="1"> Never</label>
+        </div>
+      </div>
+
+      <div class="question" id="q6">
+        <h3>6. How often do you understand what people want before they say it?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q6" value="very_frequently" data-points="4"> Very frequently</label>
+          <label class="answer"><input type="radio" name="q6" value="often" data-points="3"> Often</label>
+          <label class="answer"><input type="radio" name="q6" value="sometimes" data-points="2"> Sometimes</label>
+          <label class="answer"><input type="radio" name="q6" value="never" data-points="1"> Never</label>
+        </div>
+      </div>
+
+      <div class="question" id="q7">
+        <h3>7. How often do you partake in social activities?</h3>
+        <div class="answers">
+          <label class="answer"><input type="radio" name="q7" value="very_frequently" data-points="4"> Very frequently</label>
+          <label class="answer"><input type="radio" name="q7" value="often" data-points="3"> Often</label>
+          <label class="answer"><input type="radio" name="q7" value="sometimes" data-points="2"> Sometimes</label>
+          <label class="answer"><input type="radio" name="q7" value="never" data-points="1"> Never</label>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="primary" type="submit">See my department</button>
+        <button class="ghost" type="button" id="resetBtn">Reset</button>
+      </div>
+    </form>
+
+    <div id="resultWrap" class="hidden" style="margin-top:1rem">
+      <div id="result" class="result"></div>
+    </div>
+
+  </main>
+
+  <script>
+    (function(){
+      const form = document.getElementById("quizForm");
+      const resultWrap = document.getElementById("resultWrap");
+      const resultEl = document.getElementById("result");
+      const resetBtn = document.getElementById("resetBtn");
+
+      function toInt(v) {
+        const n = parseInt(v, 10);
+        return Number.isNaN(n) ? 0 : n;
+      }
+
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+
+        let total = 0;
+        const answers = {};
+        const questions = Array.from(form.querySelectorAll(".question"));
+
+        for (const q of questions) {
+          const input = q.querySelector("input[type=radio]");
+          const name = input && input.name;
+          const checked = q.querySelector(`input[name="${name}"]:checked`);
+          if (!checked) {
+            alert("Please answer all questions before submitting.");
+            return;
+          }
+          const pts = toInt(checked.getAttribute("data-points"));
+          total += pts;
+          answers[name] = { choice: checked.value, points: pts };
+        }
+
+        // Apply new ranges:
+        // 22-28: Business Advisory
+        // 16-21: Audit
+        // 11-15: Tax
+        // 7-10: CAS
+        let department = "";
+        if (total >= 22 && total <= 28) {
+          department = "Business Advisory";
+        } else if (total >= 16 && total <= 21) {
+          department = "Audit";
+        } else if (total >= 11 && total <= 15) {
+          department = "Tax";
+        } else if (total >= 7 && total <= 10) {
+          department = "CAS";
+        } else {
+          department = "Undetermined";
+        }
+
+        // Render result
+        let html = "";
+        html += `<h2 style="margin-top:0">Result: <span style="font-weight:700">${department}</span></h2>`;
+        html += `<p class="small" style="margin:0.25rem 0 0.6rem 0">Your score: <strong>${total}</strong> (possible range 7–28)</p>`;
+        html += `<details style="margin-top:0.4rem"><summary class="small">Score breakdown (Very frequently=4, Often=3, Sometimes=2, Never=1)</summary>`;
+        html += "<ul class='small' style='margin-top:0.4rem'>";
+        for (const q of Object.keys(answers)) {
+          html += `<li>${q.toUpperCase()}: ${answers[q].choice.replace(/_/g," ")} — ${answers[q].points} pts</li>`;
+        }
+        html += "</ul></details>";
+
+        html += `<p class="small" style="margin-top:0.6rem">Ranges: 22–28 Business Advisory · 16–21 Audit · 11–15 Tax · 7–10 CAS</p>`;
+        html += `<div style="display:flex;gap:0.5rem;margin-top:0.6rem"><button id="takeAgain" class="ghost">Take again</button></div>`;
+
+        resultEl.innerHTML = html;
+        resultWrap.classList.remove("hidden");
+
+        document.getElementById("takeAgain").addEventListener("click", function(){
+          resultWrap.classList.add("hidden");
+          form.reset();
+        });
+      });
+
+      resetBtn.addEventListener("click", function(){
+        form.reset();
+        resultWrap.classList.add("hidden");
+      });
+    })();
+  </script>
+</body>
+</html>
